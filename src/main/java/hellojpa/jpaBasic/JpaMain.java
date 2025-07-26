@@ -1,8 +1,6 @@
-package hellojpa;
+package hellojpa.jpaBasic;
 
 import jakarta.persistence.*;
-
-import java.util.List;
 
 public class JpaMain {
 
@@ -16,14 +14,10 @@ public class JpaMain {
         tx.begin();
         try{
             //new , transient 상태
-            Member member1 = new Member(1L,"yeeun");
-            Member member2 = new Member(2L,"haeun");
-
-            Member member = em.find(Member.class,1L);
-            member.setName("newYeeun");
-
-            System.out.println(member.getName() +","+member1.getName());
-
+            BasicMember basicMember = new BasicMember();
+            basicMember.setName("Yeeun");
+        //    basicMember.setRoleType(RoleType.Admin);
+            em.persist(basicMember);
             tx.commit(); //DB에 sql 전송
         }catch (Exception e){
             tx.rollback();
