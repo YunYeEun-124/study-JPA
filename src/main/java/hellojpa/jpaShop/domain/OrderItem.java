@@ -1,9 +1,6 @@
 package hellojpa.jpaShop.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class OrderItem {
@@ -13,11 +10,35 @@ public class OrderItem {
     @Column(name="ORDER_ITEM_ID")
     private Long id;
 
-    @Column(name="ORDER_ID")
-    private Long orderId;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @Column(name="ITEM_ID")
-    private Long itemId;
+    @ManyToOne
+    @JoinColumn(name = "item_id")
+    private Item item;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }
